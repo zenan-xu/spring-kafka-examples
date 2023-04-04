@@ -1,0 +1,40 @@
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb
+#    url: jdbc:h2:file:/data
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: password
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      topic: test
+      group-id: group2
+      message-type:
+      auto-offset-reset: earliest
+#      security:
+#        protocol: SASL_SSL
+#      sasl-jaas-config: org.apache.kafka.common.security.scram.ScramLoginModule required username="" password="";
+      enable-auto-commit: false
+      isolation-level: read_committed
+    producer:
+      topic: test
+      message-type:
+      security:
+        protocol: SASL_SSL
+      sasl-jaas-config: org.apache.kafka.common.security.scram.ScramLoginModule required username="" password="";
+      tx-id-prefix:
+
+springdoc:
+  swagger-ui:
+    path: /kafka-message.html
+
+logging:
+  level:
+    ROOT: INFO
+#    org.springframework:
+#      transaction: TRACE
+#      kafka:
+#        transaction: trace
+#        core: trace
